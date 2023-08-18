@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="128.394 0 871.606 864.57" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="a" x="-500" y="-500" width="2000" height="2000" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="80"/>
+    </filter>
+    <radialGradient id="b" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ff0600"/>
+      <stop offset="1" stop-color="rgba(255,197,0,0.2)"/>
+    </radialGradient>
+  </defs>
+  <g filter="url(#a)" transform="matrix(1.1037520170211792, 0, 0, 1.0751420259475708, 151.2126922607422, 17.032224655151367)" style="">
+    <svg width="750" height="750" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" transform="translate(132.098 146.143)">
+      <path fill="url(#b)" d="M402.5 345.5Q360 441 252 437.5T103 342q-41-92-8.5-198.5T237 59q110 22 159 106.5t6.5 180Z"/>
+    </svg>
+  </g>
+</svg>

@@ -12,3 +12,7 @@
   --background: black;
   --foreground: white;
 }
+
+.one:hover span:last-child {
+  width: 100%;
+}

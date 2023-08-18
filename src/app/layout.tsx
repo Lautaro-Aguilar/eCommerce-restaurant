@@ -1,7 +1,9 @@
+'use client';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk, Great_Vibes } from 'next/font/google';
 import { Providers } from './providers';
+import NavBar from './components/Navbar';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -31,6 +33,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${greatVibes.variable} font-sans`}
       >
+        <NavBar />
         <Providers>{children}</Providers>
       </body>
     </html>
