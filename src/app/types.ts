@@ -26,7 +26,10 @@ export interface ICategory {
   id: string;
   name: string;
   image: string;
-  slug: string;
+  slug: {
+    current: string;
+    _type: string;
+  };
 }
 
 export interface IFeaturedItems {

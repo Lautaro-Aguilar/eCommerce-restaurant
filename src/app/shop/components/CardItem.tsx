@@ -2,7 +2,6 @@
 import { Rating } from '@/app/components/Rating';
 import { IProduct } from '@/app/types';
 import { Button, Card, CardBody, CardHeader, Image } from '@nextui-org/react';
-import { Basket, Heart } from '@phosphor-icons/react';
 import React from 'react';
 
 interface ProductCardProps {
