@@ -2,13 +2,14 @@
 import Carousel from './components/Carousel';
 import Banner from './components/Banner';
 import AboutUs from './components/AboutUs';
-import FoodCategory from './components/FoodCategory';
+import FoodCategory from './components/FoodCategory/FoodCategory';
 import { client } from '../../sanity/lib/client';
 import { groq } from 'next-sanity';
 import { ICategory } from './types';
 
 const getAllCategoriesQueries: string = `
 *[_type == "category"]{
+  "id": _id,
   name,
   slug,
   image

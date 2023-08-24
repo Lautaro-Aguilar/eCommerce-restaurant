@@ -1,49 +1,46 @@
 'use client';
 import { Button } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
-import { CheckIcon } from '../CheckIcon';
-import { ICategory } from '../types';
-import CardItemTwo from './CardItemTwo';
+import { ICategory, IProduct } from '../../types';
+import ProductCard from '../ProductCard';
 import { ArrowLeft, ArrowRight } from '@phosphor-icons/react';
-import { client } from '../../../sanity/lib/client';
+import { client } from '../../../../sanity/lib/client';
+import Categories from './Categories';
 
 interface FoodCategoryProps {
   categories: ICategory[];
 }
 
 const FoodCategory = ({ categories }: FoodCategoryProps) => {
-  console.log(categories);
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('salty');
-  const [productos, setProductos] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(
+    '3823e1f6-baac-4d3b-94eb-bda988332c08'
+  );
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   const itemsPerPage = 5;
   const [startItem, setStartItem] = useState(0);
   const totalItems = 10; // N
 
   useEffect(() => {
-    // Esta función realiza la consulta y actualiza el estado con los productos
     async function fetchProducts() {
       const queriedProducts = await client.fetch(
-        `*[_type == "product" && category.slug.current == $slug]{
+        `*[_type == "product" && references($id)]{
           name,
-          slug,
+          "slug": slug.current,
           price,
           description,
-          mainImage,
+          "mainImage": mainImage.asset->url,
           gallery,
           rating
         }`,
-        { slug: categoriaSeleccionada }
+        { id: selectedCategory }
       );
 
-      setProductos(queriedProducts);
+      setProducts(queriedProducts);
     }
-
-    // Llama a la función cada vez que cambie 'categoriaSeleccionada'
     fetchProducts();
-  }, [categoriaSeleccionada]);
+  }, [selectedCategory]);
 
-  console.log(productos);
   return (
     <section
       id='menu'
@@ -58,39 +55,26 @@ const FoodCategory = ({ categories }: FoodCategoryProps) => {
         </h2>
       </div>
       <div className='flex justify-evenly py-5'>
-        {categories.map((categorie) => (
-          <Button
-            key={categorie.slug.current}
-            startContent={
-              categoriaSeleccionada === categorie.slug.current ? (
-                <CheckIcon color='#eab308' />
-              ) : null
-            }
-            color='warning'
-            variant='flat'
-            radius='lg'
-            className='hover:cursor-pointer'
-            onClick={() => setCategoriaSeleccionada(categorie.slug.current)}
-          >
-            {categorie.name.charAt(0).toUpperCase() + categorie.name.slice(1)}
-          </Button>
-        ))}
+        <Categories
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
       </div>
 
       <div
-        id='testimonials'
+        id='Menu'
         className='grid grid-cols-1 py-2 gap-y-10 place-items-center lg:grid-cols-7 lg:grid-rows-1 lg:gap-y-0 lg:justify-items-stretch'
       >
         <div className='lg:col-span-2'>
           <img src='/pizza.png' alt='Imagen principal' />
         </div>
         <div className='grid grid-cols-1 gap-5 row-span-3 justify-items-stretch lg:grid-cols-2 lg:col-span-5'>
-          {Array.from({ length: itemsPerPage }).map((_, index) => {
-            if (startItem + index < totalItems) {
-              return <CardItemTwo key={index} />;
-            }
-            return null;
-          })}
+          {products
+            ? products.map((product) => (
+                <ProductCard product={product} key={product.id} />
+              ))
+            : null}
         </div>
       </div>
 
