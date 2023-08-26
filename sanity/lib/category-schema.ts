@@ -25,5 +25,16 @@ export const CategorySchema = {
         hotspot: true,
       },
     },
+    {
+      name: 'icon',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Hamburguer', value: 'hamburguer' },
+          { title: 'Cookie', value: 'cookie' },
+          // etc
+        ],
+      },
+    },
   ],
 };

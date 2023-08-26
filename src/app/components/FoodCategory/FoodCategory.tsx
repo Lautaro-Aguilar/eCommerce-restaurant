@@ -5,16 +5,27 @@ import { ICategory, IProduct } from '../../types';
 import ProductCard from '../ProductCard';
 import { ArrowLeft, ArrowRight } from '@phosphor-icons/react';
 import { client } from '../../../../sanity/lib/client';
-import Categories from './Categories';
+import Categories from './CategoriesTab';
+import Slider from 'react-slick';
 
 interface FoodCategoryProps {
   categories: ICategory[];
 }
 
+const settings = {
+  dots: true,
+  centerMode: true,
+  slidesToShow: 3,
+  slidesToScroll: 1, // Asegúrate de que esté establecido en 1
+  infinite: true, // Considera habilitar la navegación infinita
+};
+
 const FoodCategory = ({ categories }: FoodCategoryProps) => {
   const [selectedCategory, setSelectedCategory] = useState(
     '3823e1f6-baac-4d3b-94eb-bda988332c08'
   );
+  const changeSelectedCategory = (category: string) =>
+    setSelectedCategory(category);
   const [products, setProducts] = useState<IProduct[]>([]);
 
   const itemsPerPage = 5;
@@ -54,21 +65,15 @@ const FoodCategory = ({ categories }: FoodCategoryProps) => {
           <span className='text-yellow-500'>Ch</span>oose Food Item
         </h2>
       </div>
-      <div className='flex justify-evenly py-5'>
-        <Categories
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-      </div>
+      <Categories
+        categories={categories}
+        changeSelectedCategory={changeSelectedCategory}
+      />
 
-      <div
+      {/* <div
         id='Menu'
         className='grid grid-cols-1 py-2 gap-y-10 place-items-center lg:grid-cols-7 lg:grid-rows-1 lg:gap-y-0 lg:justify-items-stretch'
       >
-        <div className='lg:col-span-2'>
-          <img src='/pizza.png' alt='Imagen principal' />
-        </div>
         <div className='grid grid-cols-1 gap-5 row-span-3 justify-items-stretch lg:grid-cols-2 lg:col-span-5'>
           {products
             ? products.map((product) => (
@@ -76,7 +81,15 @@ const FoodCategory = ({ categories }: FoodCategoryProps) => {
               ))
             : null}
         </div>
-      </div>
+        
+      </div> */}
+      <Slider {...settings}>
+        {products.map((product) => (
+          <div key={product.id}>
+            <ProductCard product={product} />
+          </div>
+        ))}
+      </Slider>
 
       <div className='pagination-controls sm:hidden'>
         <button

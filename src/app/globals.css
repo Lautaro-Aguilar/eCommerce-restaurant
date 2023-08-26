@@ -16,3 +16,14 @@
 .one:hover span:last-child {
   width: 100%;
 }
+
+.slick-next:before,
+.slick-prev:before {
+  color: red !important;
+  font-size: 30px !important;
+  z-index: 1;
+}
+
+.slick-slider {
+  overflow: hidden;
+}

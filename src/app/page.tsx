@@ -6,13 +6,16 @@ import FoodCategory from './components/FoodCategory/FoodCategory';
 import { client } from '../../sanity/lib/client';
 import { groq } from 'next-sanity';
 import { ICategory } from './types';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const getAllCategoriesQueries: string = `
 *[_type == "category"]{
   "id": _id,
   name,
   slug,
-  image
+  image,
+  icon
 }
 `;
 

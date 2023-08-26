@@ -30,6 +30,7 @@ export interface ICategory {
     current: string;
     _type: string;
   };
+  icon: string;
 }
 
 export interface IFeaturedItems {
