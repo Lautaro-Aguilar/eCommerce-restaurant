@@ -12,22 +12,15 @@ interface CardSwiperProps {
 
 const CardSwiper = ({ products }: CardSwiperProps) => {
   return (
-    <div>
+    <div className='py-5'>
       <Swiper
-        effect='coverflow'
-        modules={[EffectCoverflow, Pagination]}
-        grabCursor
-        centeredSlides
-        loop
         slidesPerView={3}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 2.5,
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
         }}
-        pagination
-        onSwiper={(swiper) => console.log(swiper)}
+        modules={[Pagination]}
+        className="mySwiper"
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>

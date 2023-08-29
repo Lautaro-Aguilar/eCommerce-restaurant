@@ -4,19 +4,20 @@ import { IRating } from '../types';
 
 interface RatingProps {
   rating: IRating;
+  size?: number
 }
-export const Rating = ({ rating }: RatingProps) => {
+export const Rating = ({ rating, size = 18 }: RatingProps) => {
   return (
     <div className='flex items-center'>
       <ReactStars
         count={5}
         value={rating?.rate}
         half={true}
-        size={18}
+        size={size}
         color2='#eab308'
         edit={false}
       />
-      <p className='text-sm mt-0.5'>({rating?.count})</p>
+      <p className='text-xs mt-0.5 ml-1 text-gray-400'>({rating?.count})</p>
     </div>
   );
 };
