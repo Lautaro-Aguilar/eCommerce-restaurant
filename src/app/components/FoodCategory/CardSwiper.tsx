@@ -1,7 +1,12 @@
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-import { EffectCoverflow, Pagination, EffectFade } from 'swiper/modules';
+import {
+  EffectCoverflow,
+  Pagination,
+  EffectFade,
+  Navigation,
+} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ProductCard from '../ProductCard';
 import { IProduct } from '@/app/types';
@@ -19,8 +24,8 @@ const CardSwiper = ({ products }: CardSwiperProps) => {
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
-        className="mySwiper"
+        modules={[Pagination, Navigation]}
+        className='mySwiper'
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>

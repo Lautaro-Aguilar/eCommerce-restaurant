@@ -20,8 +20,8 @@ const CardItem = ({ product }: ProductCardProps) => {
           isZoomed
         />
       </CardHeader>
-      <CardBody className='overflow-visible px-5 py-1'>
-        <div className='flex flex-col gap-0.5 justify-center'>
+      <CardBody className='overflow-visible px-5 pb-1'>
+        <div className='flex flex-col gap-0.5 justify-center py-1 '>
           <h4 className='font-bold text-xl'>{product[0].name}</h4>
           <div className='flex items-center justify-between'>
             <p className='text-lg uppercase font-bold text-yellow-500'>{`$${product[0].price}`}</p>

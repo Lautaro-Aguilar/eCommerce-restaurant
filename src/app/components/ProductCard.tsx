@@ -14,25 +14,43 @@ const ProductCard = ({ product }: CardItemProps) => {
     <Card className='p-0 max-w-xs'>
       <CardHeader className='overflow-visible p-0 w-ful'>
         <Image
-        isZoomed
+          isZoomed
           alt='Card background'
           className='object-cover rounded-xl min-w-full rounded-b-none'
           src='/imagen4.jpg'
         />
       </CardHeader>
-      <CardBody className='pb-0 pt-2 px-4 flex-col items-start justify-center'>
+      <CardBody className='py-2 px-4 flex-col items-start justify-center'>
         <div className='flex items-center justify-between w-full'>
           <h4 className='font-bold uppercase text-xl'>{product.name}</h4>
-          <Button isIconOnly radius='full' variant='light' color='warning'><Heart size={22} />
-</Button>
+          <Button isIconOnly radius='full' variant='light' color='warning'>
+            <Heart size={22} />
+          </Button>
         </div>
-        <p className='text-base font-normal text-foreground-600 pb-1'>{product.description}</p>
+        <p className='text-base font-normal text-foreground-600 pb-1 -mt-2 min-h-[70px]'>
+          {product.description}
+        </p>
         <div className='flex flex-col gap-1 w-full'>
-          <Button variant='flat' className='uppercase' color='warning' fullWidth>add to cart</Button>
-          <Button variant='light' className='uppercase' color='warning' fullWidth>details</Button>
+          <Button
+            variant='flat'
+            className='uppercase'
+            color='warning'
+            fullWidth
+            radius='sm'
+          >
+            add to cart
+          </Button>
+          <Button
+            variant='light'
+            className='uppercase'
+            color='warning'
+            fullWidth
+            radius='sm'
+          >
+            details
+          </Button>
         </div>
       </CardBody>
-      
     </Card>
     /*     <a
       href={`/products/${product.slug}`}

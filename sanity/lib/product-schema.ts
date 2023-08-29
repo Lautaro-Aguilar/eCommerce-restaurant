@@ -1,3 +1,5 @@
+import { Rule } from '@sanity/types';
+
 export const ProductSchema = {
   name: 'product',
   title: 'Product',
@@ -26,6 +28,10 @@ export const ProductSchema = {
     {
       name: 'description',
       title: 'Description',
+      validation: (Rule: Rule) => [
+        Rule.required().min(40).error('Min 40 characters is required'),
+        Rule.max(110).error('Max 110 characters'),
+      ],
       type: 'text',
     },
     {
